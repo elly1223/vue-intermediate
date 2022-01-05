@@ -2,7 +2,7 @@
   <div class="inputBox shadow">
     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" />
     <span class="addContainer" v-on:click="addTodo">
-      <img alt="" src="../assets/plus.png" />
+      <img alt="" src="../assets/plus.png" style="width: 20px;" />
     </span>
   </div>
 </template>
@@ -16,8 +16,8 @@ export default {
   },
   methods: {
     addTodo: function() {
-      if (this.newTodoItem !== "") {  
-          this.$emit('addTodoItem', this.newTodoItem);
+      if (this.newTodoItem !== "") {
+        this.$emit("addTodoItem", this.newTodoItem);
         this.clearInput();
       }
     },

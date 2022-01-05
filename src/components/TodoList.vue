@@ -11,12 +11,17 @@
           src="../assets/check.png"
           v-bind:class="{ checkBtnCompleted: todoItem.completed }"
           v-on:click="toggleComplete(todoItem, index)"
+          style="width: 30px; height: 30px;"
         />
         <span v-bind:class="{ textCompleted: todoItem.completed }">
           {{ todoItem.item }}
         </span>
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
-          <img alt="" src="../assets/trash.png" />
+          <img
+            alt=""
+            src="../assets/trash.png"
+            style="width: 20px;  height: 20px;"
+          />
         </span>
       </li>
     </ul>
@@ -28,17 +33,10 @@ export default {
   props: ["propsdata"],
   methods: {
     removeTodo: function(todoItem, index) {
-this.$emit('removeItem', todoItem, index);
-
-      console.log(todoItem, index);
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.$emit("removeItem", todoItem, index);
     },
     toggleComplete: function(todoItem, index) {
-      todoItem.completed = !todoItem.completed;
-      // 로컬 스토리지에 데이터를 갱신
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit("toggleItem", todoItem, index);
     }
   }
 };
